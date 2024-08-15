@@ -1,6 +1,14 @@
 # DEFCON32 CHV (TUF)
 will update readme later.
 
+## Setup
+Host "TUF" web server locally, in this case on port 8003. The TUF web server will contain metadata, which is a symbolic link to the current directory, which contains the forged
+- timestamp.json
+- snapshot.json
+- targets.json
+
+targets.json will contain a listing for the malicious software to be executed, in this case, tcmupdate_v0.2.0.py. Once the victim TUF server hits our malicious TUF server, the cached version of timestamp.json will be outdated, thus pulling in all of our malicious metadata and executing the malicious firmware. 
+
 ## Flag 1
 Connecting to the TUF server update CLI we are greeted with a prompt asking users to "Enter type name:" which will then download and execute the file that matches the regex query.\
 
@@ -20,7 +28,7 @@ Since the input is parsed as regex, we can easily bypass this filter and rollbac
 `tcmupdate_v0[\D]3`
 Once v0.3.0 is executed we are greeted with the first flag and on our way to obtaining the second flag. Obtaining the second flag is more tricky, this is because we have to supply the program with the URL of a TUF server, which will then validate that the metadata objects on the remote TUF server have been signed, then download and execute the program specified from the remote server. 
 
-## Second Flag
+## Flag 2
 Inside of the supplied `root.json` file we see that 3 of the 4 metadata files in use are signed by the same private key, and the public key that matches the keyid is supplied to us:
 ```json
 "f1f66ca394996ea67ac7855f484d9871c8fd74e687ebab826dbaedf3b9296d14" : {
