@@ -86,6 +86,6 @@ u9RgDYKBwPvfU59b9ObRDgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAADsGGj
 AgMBAAE=
 -----END PUBLIC KEY-----
 ```
-Supplying this public key to the RsaCtfTool [credit later] we are able to use the "Lehman attack" (?) to extract the private key from the public key. With the private key we are able to forge and sign our own metadata objects and supply our own malicious "firmware updates"
+Supplying this public key to the [RsaCtfTool](https://github.com/RsaCtfTool/RsaCtfTool) we are able to use the "Lehman attack" (?) to extract the private key from the public key. With the private key we are able to forge and sign our own metadata objects and supply our own malicious "firmware updates"
 
 This attack is programmatically carried out in solve.py and sign.py
